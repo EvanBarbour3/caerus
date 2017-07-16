@@ -33,11 +33,13 @@ class RegisterController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @author EB
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        return redirect()->intended('/')->send();
+
+        // $this->middleware('guest');
     }
 
     /**
