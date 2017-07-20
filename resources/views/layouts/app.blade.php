@@ -6,7 +6,9 @@
     @include('layouts.navigation')
     </div>
 
-    @yield('content')
+    <div class="container">
+        @yield('content')
+    </div>
     <footer class="footer">
         <div class="container">
             <div class="content has-text-centered">
@@ -26,8 +28,6 @@
 </div>
 @endsection
 
-@section('scripts')
-<!-- Scripts -->
-@yield('scripts')
-<script src="{{ asset('js/app.js') }}"></script>
-@endsection
+@push('scripts')
+<script src="{{ mix('js/app.js') }}"></script>
+@endpush
