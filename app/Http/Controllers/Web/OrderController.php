@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 
+/**
+ * Class OrderController
+ *
+ * @author EB
+ * @package App\Http\Controllers\Web
+ */
 class OrderController extends Controller
 {
     /**
@@ -12,6 +18,6 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('order.index');
     }
 }
