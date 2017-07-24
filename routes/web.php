@@ -17,6 +17,6 @@ Route::middleware(['auth'])->namespace('Web')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::prefix('orders')->group(function () {
-        Route::get('/', 'HomeController@index')->name('orders');
+        Route::get('/', 'OrderController@index')->name('orders');
     });
 });
