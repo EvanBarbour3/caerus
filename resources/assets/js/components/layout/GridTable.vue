@@ -10,7 +10,7 @@
               :api-url="apiUrl"
               :fields="tableFields"
               :per-page="perPage"
-              :detail-row-component="detailRowComponentName"
+              :detail-row-component="detailRowComponent"
               :append-params="additionalQueryParameters"
               :css="css"
               pagination-path=""
@@ -57,7 +57,7 @@
                     return []
                 }
             },
-            detailRowComponentName: {
+            detailRowComponent: {
                 type: String,
                 default: ''
             },
