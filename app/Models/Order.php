@@ -40,18 +40,6 @@ class Order extends Model implements QueryableContract
      * @author EB
      * @var array
      */
-    protected $visible = [
-        'user',
-        'description',
-        'amount',
-        'created_at',
-        'updated_at',
-    ];
-
-    /**
-     * @author EB
-     * @var array
-     */
     protected $dates = [
         'created_at',
         'updated_at',
@@ -70,8 +58,23 @@ class Order extends Model implements QueryableContract
      * @author EB
      * @var array
      */
+    protected $visible = [
+        'user',
+        'description',
+        'amount',
+        'items',
+        'total_amount',
+        'created_at',
+        'updated_at',
+    ];
+
+    /**
+     * @author EB
+     * @var array
+     */
     protected $appends = [
-        'test_property',
+        'items',
+        'total_amount',
     ];
 
     /**
@@ -84,13 +87,29 @@ class Order extends Model implements QueryableContract
     }
 
     /**
-     * Testing adding attributes
-     *
      * @author EB
-     * @return string
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getTestPropertyAttribute()
+    protected function getItemsAttribute()
     {
-        return $this->attributes['test_property'] = 'property';
+        return $this->attributes['items'] = $this->items()->get();
+    }
+
+    /**
+     * @author EB
+     * @return int
+     */
+    protected function getTotalAmountAttribute()
+    {
+        return $this->attributes['total_amount'] = $this->items()->get()->sum('price');
+    }
+
+    /**
+     * @author EB
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function items()
+    {
+        return $this->belongsToMany(Item::class, 'order_item');
     }
 }
