@@ -1,4 +1,4 @@
-@extends('layouts.guest')
+@extends('layout.guest')
 
 @section('content')
     <section class="hero is-fullheight">
