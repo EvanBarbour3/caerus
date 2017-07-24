@@ -59,6 +59,7 @@ class Order extends Model implements QueryableContract
      * @var array
      */
     protected $visible = [
+        'id',
         'user',
         'description',
         'amount',
