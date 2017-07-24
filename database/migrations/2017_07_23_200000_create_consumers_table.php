@@ -5,11 +5,11 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateOrdersTable
+ * Class CreateConsumersTable
  *
  * @author EB
  */
-class CreateOrdersTable extends Migration
+class CreateConsumersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,11 +18,13 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('consumers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user')->unsigned();
-            $table->foreign('user')->references('id')->on('users');
-            $table->string('description');
+            $table->string('title');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->date('date_of_birth');
+            $table->boolean('marketing_consent');
             $table->timestampsTz();
         });
     }
@@ -34,6 +36,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('consumers');
     }
 }
