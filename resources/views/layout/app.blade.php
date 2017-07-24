@@ -1,10 +1,8 @@
-@extends('layouts.master')
+@extends('layout.master')
 
 @section('page')
 <div id="app">
-    <div class="container">
-    @include('layouts.navigation')
-    </div>
+    @include('layout.navigation')
 
     <div class="container">
         @yield('content')
