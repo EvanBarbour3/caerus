@@ -13,4 +13,5 @@
 
 Route::prefix('orders')->group(function () {
     Route::get('/', 'OrderController@index');
+    Route::get('/{id}', 'OrderController@show');
 });
