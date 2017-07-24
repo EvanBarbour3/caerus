@@ -27,12 +27,13 @@ trait Queryable
      */
     protected function queryModel(Model $model)
     {
-        $this->checkModelIsQueryable($model);
+        $model = $this->checkModelIsQueryable($model);
 
         $query = $this->getQuery($model);
         $request = $this->getCurrentRequest();
 
-        $filters = $request->only($query->getModel()->getVisible());
+        $filters = $request->only($model->getQueryableAttributes());
+
         foreach ($filters as $k => $v) {
             $query->where($k, 'like', '%' . $v . '%');
         }
@@ -73,7 +74,7 @@ trait Queryable
     /**
      * @author EB
      * @param Model $model
-     * @return bool
+     * @return \App\Models\Contracts\Queryable
      * @throws ModelNotQueryableException
      */
     private function checkModelIsQueryable(Model $model)
@@ -82,6 +83,11 @@ trait Queryable
             throw new ModelNotQueryableException('Unable to query Model');
         }
 
-        return true;
+        return $model;
+    }
+
+    private function getFilters(\App\Models\Contracts\Queryable $model)
+    {
+        return $model->getQueryableAttributes();
     }
 }
