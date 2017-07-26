@@ -5,26 +5,28 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 
-class CleanJavaScript extends Command
+/**
+ * Class CleanJs
+ *
+ * @author EB
+ * @package App\Console\Commands
+ */
+class CleanJs extends Command
 {
     /**
-     * The name and signature of the console command.
-     *
+     * @author EB
      * @var string
      */
     protected $signature = 'clean:js';
 
     /**
-     * The console command description.
-     *
+     * @author EB
      * @var string
      */
     protected $description = 'Clean up all computed JavaScript files that mix has created';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * @author EB
      */
     public function __construct()
     {
@@ -32,9 +34,7 @@ class CleanJavaScript extends Command
     }
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
+     * @author EB
      */
     public function handle()
     {
@@ -56,9 +56,9 @@ class CleanJavaScript extends Command
      */
     private function getFiles()
     {
-        $processs = new Process('ls *.*.js | awk -F \'[.]\' \'{print $1}\' | paste -sd \',\'', 'public/js');
-        $processs->run();
+        $process = new Process('ls *.*.js | awk -F \'[.]\' \'{print $1}\' | paste -sd \',\'', 'public/js');
+        $process->run();
 
-        return explode(',', preg_replace('~[\r\n]+~', '', $processs->getOutput()));
+        return explode(',', preg_replace('~[\r\n]+~', '', $process->getOutput()));
     }
 }
